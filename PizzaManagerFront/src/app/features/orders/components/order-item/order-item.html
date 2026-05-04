@@ -1,0 +1,47 @@
+<td class="px-4 md:px-6 py-3 md:py-4">
+    <span class="font-bold text-slate-900 dark:text-white">№{{order().id}}</span>
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4 text-slate-600 dark:text-slate-400 text-xs md:text-sm">
+    {{order().createdAt| date:'HH:mm'}}
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4">
+    <div class="font-medium text-slate-900 dark:text-white">{{order().customerName}}</div>
+    <div class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400">{{order().customerPhone}}</div>
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4">
+    <div class="flex items-center gap-1.5 font-medium text-slate-900 dark:text-white text-xs md:text-sm">
+        <i-lucide [name]="Navigation" class="w-3 md:w-3.5 h-3 md:h-3.5 text-blue-500"></i-lucide>
+        Доставка
+    </div>
+    <div class="text-[10px] md:text-xs text-slate-500 dark:text-slate-400 truncate max-w-[150px] md:max-w-[200px]">
+        {{order().address}}
+    </div>
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4 font-bold text-slate-900 dark:text-white whitespace-nowrap text-xs md:text-sm">
+    {{order().totalPrice | currency:'RUB':'symbol':'1.2-2'}}
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4 text-center">
+    <span
+        class="px-2 md:px-2.5 py-1 md:py-1.5 text-[10px] md:text-xs font-semibold rounded-md border bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/30 dark:text-blue-400 dark:border-blue-800">
+        {{order().status}}
+    </span>
+</td>
+<td class="px-4 md:px-6 py-3 md:py-4 text-right">
+    <div class="flex items-center justify-end gap-1 md:gap-2">
+        <button
+            class="p-1.5 text-slate-400 hover:text-orange-500 bg-gray-100 hover:bg-orange-50 dark:bg-slate-800 dark:hover:bg-orange-900/20 rounded-md transition-colors"
+            title="Позвонить">
+            <i-lucide [name]="Phone" class="w-3.5 h-3.5 md:w-4 md:h-4"></i-lucide>
+        </button>
+        <button
+            class="p-1.5 text-slate-400 hover:text-blue-500 bg-gray-100 hover:bg-blue-50 dark:bg-slate-800 dark:hover:bg-blue-900/20 rounded-md transition-colors"
+            title="Детали">
+            <i-lucide [name]="Eye" class="w-3.5 h-3.5 md:w-4 md:h-4"></i-lucide>
+        </button>
+        <button
+            class="p-1.5 text-slate-400 hover:text-slate-900 dark:hover:text-white bg-gray-100 hover:bg-gray-200 dark:bg-slate-800 dark:hover:bg-slate-700 rounded-md transition-colors"
+            title="Перевести статус">
+            <i-lucide [name]="ArrowRight" class="w-3.5 h-3.5 md:w-4 md:h-4"></i-lucide>
+        </button>
+    </div>
+</td>

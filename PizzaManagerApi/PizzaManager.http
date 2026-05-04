@@ -1,0 +1,120 @@
+@Host = http://localhost:5154
+@PizzaId = 1
+
+### Получить все пиццы
+GET {{Host}}/api/pizzas
+Accept: application/json
+
+### Получить одну пиццу по ID
+GET {{Host}}/api/pizzas/{{PizzaId}}
+Accept: application/json
+
+### Получить справочник категорий
+GET {{Host}}/api/dictionary/categories
+Accept: application/json
+
+### Создать новую пиццу
+POST {{Host}}/api/pizzas
+Content-Type: application/json
+
+{
+  "name": "Маргарита",
+  "description": "Базовый вариант с сыром и томатами",
+  "image": "margarita.jpg",
+  "categoryIds": [4],
+  "ingredientIds": [1, 3],
+  "variants": [
+    {
+      "size": "S",
+      "weight": 250,
+      "price": 450,
+      "inStock": true
+    },
+    {
+      "size": "L",
+      "weight": 600,
+      "price": 950,
+      "inStock": true
+    }
+  ]
+}
+
+### Обновить пиццу
+PUT {{Host}}/api/pizzas/{{PizzaId}}
+Content-Type: application/json
+
+{
+  "name": "Обновленная Пепперони",
+  "description": "Теперь еще больше колбасок",
+  "image": "pepperoni_new.jpg",
+  "categoryIds": [1],
+  "ingredientIds": [1, 2],
+  "variants": [
+    {
+      "size": "M",
+      "weight": 450,
+      "price": 1200,
+      "inStock": true
+    }
+  ]
+}
+
+### Удалить пиццу
+DELETE {{Host}}/api/pizzas/{{PizzaId}}
+
+### 1. Создать новый заказ
+# Перед запуском убедись, что: 
+# - В базе есть клиент с ID 1
+# - В базе есть пицца с ID 1 и вариантом размера 'M'
+POST {{Host}}/api/orders
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "deliveryType": "delivery",
+  "address": "ул. Пушкина, д. 10, кв. 5",
+  "items": [
+    {
+      "pizzaId": 1,
+      "size": "M",
+      "count": 2
+    }
+  ]
+}
+
+### 2. Получить список всех заказов
+# Проверь поле totalPrice в ответе — оно должно рассчитаться автоматически
+GET {{Host}}/api/orders
+Accept: application/json
+
+### 3. Изменить статус заказа
+# Замени '1' на ID только что созданного заказа
+PATCH {{Host}}/api/orders/1/status
+Content-Type: application/json
+
+{
+  "status": "cooking",
+  "label": "Готовится",
+  "updatedBy": "Повар Степан"
+}
+
+### 4. Получить детальную информацию (проверка истории)
+GET {{Host}}/api/orders/1
+Accept: application/json
+
+### Проверка справочников
+### categories
+GET {{Host}}/api/dictionary/categories
+Accept: application/json
+
+### ingredients
+GET {{Host}}/api/dictionary/ingredients
+Accept: application/json
+
+### customers
+GET {{Host}}/api/dictionary/customers
+Accept: application/json
+
+### couriers
+GET {{Host}}/api/dictionary/couriers
+Accept: application/json

@@ -1,0 +1,24 @@
+
+    <td class="px-3 py-3 text-slate-900 dark:text-white font-medium">{{ index() + 1 }}</td>
+    <td class="px-3 py-3 text-slate-700 dark:text-slate-300">{{ pizzaOrderFormGroup().value.pizza?.name }}</td>
+    <td class="px-3 py-3">
+        <div class="flex gap-1.5 pizza-size-picker" role="group" aria-label="Pizza size">
+            <ui-select-button 
+                [options]="sizes()"
+                [formControl]="pizzaOrderFormGroup().controls.pizzaSize"
+            ></ui-select-button>
+        </div>
+    </td>
+    <td class="px-3 py-3 text-slate-900 dark:text-white font-bold whitespace-nowrap">
+        <ui-input
+            [formControl]="pizzaOrderFormGroup().controls.count"
+        ></ui-input>
+    </td>
+    <td class="px-3 py-3 text-slate-900 dark:text-white font-bold whitespace-nowrap">{{ price() }} ₽</td>
+    <td class="px-3 py-3 text-center">
+        <button (click)="onDelete.emit()" type="button" class="p-1.5 text-red-400 hover:text-red-600 dark:hover:text-red-300 bg-red-50 hover:bg-red-100 dark:bg-red-900/20 dark:hover:bg-red-900/40 rounded-md transition-colors">
+            <i-lucide [name]="Trash2" class="w-4 h-4"></i-lucide>
+        </button>
+    </td>
+
+

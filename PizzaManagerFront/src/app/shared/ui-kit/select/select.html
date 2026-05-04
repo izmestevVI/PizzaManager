@@ -1,0 +1,71 @@
+<div 
+    #container
+    #trigger="cdkOverlayOrigin"
+    cdkOverlayOrigin
+    [style.width]="width()"
+    [class]="containerClass()"
+>
+    @if (label()) {
+    <label [for]="id()" [class]="labelClass()">
+        {{ label() }}
+    </label>
+    }
+
+    <button 
+        type="button" 
+        [id]="id()" 
+        (click)="toggle()"
+        [disabled]="isDisabled()" 
+        [class]="triggerClass()"
+    >
+        <span class="truncate" [class.text-slate-400]="!selectedLabel()">
+            {{ selectedLabel() || placeholder() || 'Выберите...' }}
+        </span>
+
+        <i-lucide [name]="ChevronDown" class="w-4 h-4 text-slate-400 transition-transform duration-200"
+            [class.rotate-180]="isOpen()"></i-lucide>
+    </button>
+
+    <ng-template 
+        cdkConnectedOverlay 
+        [cdkConnectedOverlayOrigin]="trigger" 
+        [cdkConnectedOverlayOpen]="isOpen()"
+        [cdkConnectedOverlayPositions]="overlayPositions"
+        [cdkConnectedOverlayWidth]="container.offsetWidth"
+        [cdkConnectedOverlayScrollStrategy]="scrollStrategy"
+        [cdkConnectedOverlayPush]="false"
+        (overlayOutsideClick)="close()"
+        (detach)="close()">
+        <div class="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 z-50">
+            <ul class="max-h-[240px] overflow-y-auto p-1.5 custom-scrollbar">
+                @for (opt of options(); track opt.value) {
+                <li>
+                    <button type="button" (click)="selectOption(opt)"
+                        class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-left"
+                        [class]="value() === opt.value 
+                    ? 'bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 font-semibold' 
+                    : 'text-slate-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800'">
+                        @if (opt.icon) {
+                        <i-lucide [name]="opt.icon" class="w-4 h-4"></i-lucide>
+                        }
+                        <div class="flex flex-col">
+                            <span>{{ opt.label }}</span>
+                            @if (opt.description) {
+                            <span class="text-[10px] opacity-60 font-normal leading-tight">{{ opt.description }}</span>
+                            }
+                        </div>
+
+                        @if (value() === opt.value) {
+                        <i-lucide [name]="Check" class="w-4 h-4 ml-auto"></i-lucide>
+                        }
+                    </button>
+                </li>
+                } @empty {
+                <li class="px-4 py-3 text-sm text-slate-500 text-center">Нет доступных вариантов</li>
+                }
+            </ul>
+        </div>
+    </ng-template>
+
+    <ui-form-error [message]="errorMessage()"></ui-form-error>
+</div>

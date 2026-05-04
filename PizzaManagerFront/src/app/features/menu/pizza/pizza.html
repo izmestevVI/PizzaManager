@@ -1,0 +1,182 @@
+<div class="space-y-6">
+  <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 p-4 md:p-6 bg-white dark:bg-slate-950 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-200">
+    <div class="flex items-center gap-3">
+      <button routerLink=".." type="button" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 text-slate-500 transition-colors">
+        <i-lucide [name]="ArrowLeft" class="w-5 h-5"></i-lucide>
+      </button>
+      <h1 class="text-xl md:text-2xl font-bold text-slate-950 dark:text-white uppercase tracking-tight">
+        {{header()}}
+      </h1>
+    </div>
+    
+    <div class="flex items-center gap-3 w-full sm:w-auto">
+      <button 
+        ui-button 
+        variant="outline" 
+        size="sm"
+        routerLink=".." 
+      >
+        Отмена
+      </button>
+      <button
+        ui-button
+        size="sm"
+        [disabled]="isFormInvalid()"
+        (click)="addOrUpdatePizza()" 
+      >
+        <i-lucide [name]="Save" class="w-4 h-4"></i-lucide>
+        {{nameSaveButton()}}
+      </button>
+    </div>
+  </header>
+
+  <form [formGroup]="pizzaForm" class="space-y-6">
+    
+    <section class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-200 space-y-6">
+      <h2 class="text-lg font-semibold text-slate-950 dark:text-white">ОСНОВНАЯ ИНФОРМАЦИЯ</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="space-y-3">
+          <label class="block text-sm font-medium text-slate-700 dark:text-slate-300">Фото пиццы</label>
+          <div class="w-full aspect-[4/3] max-w-[280px] rounded-xl border-2 border-dashed border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-900 flex flex-col items-center justify-center p-4 text-center cursor-pointer hover:border-orange-300 dark:hover:border-orange-600 transition-colors">
+              <div class="w-16 h-16 rounded-full bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-500 mb-3">
+                <i-lucide [name]="Image" class="w-8 h-8"></i-lucide>
+              </div>
+          </div>
+        </div>
+
+        <div class="space-y-5">
+          <div>
+            <ui-input
+              label="Название пиццы"
+              placeholder="Пепперони (акц.)"
+              [formControl]="pizzaForm.controls.name"
+            ></ui-input>
+          </div>
+
+          <div>
+            <ui-textarea
+              label="Описание"
+              placeholder="Классическая пицца с острой колбаской..."
+              [formControl]="pizzaForm.controls.description"
+            ></ui-textarea>
+          </div>
+          <div>
+            <ui-multi-select
+              label="Категории"
+              placeholder="Выберите категории"
+              [options]="categorys() ?? []"
+              [formControl]="pizzaForm.controls.categorys"
+            ></ui-multi-select>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-200 space-y-6">
+      <h2 class="text-lg font-semibold text-slate-950 dark:text-white">ЦЕНЫ И ВАРИАЦИИ</h2>
+      
+      <div class="overflow-x-auto -mx-6 px-6">
+        <table class="w-full text-sm text-left min-w-[600px]">
+          <thead class="text-xs text-slate-500 bg-gray-50/50 dark:bg-slate-900/50 dark:text-slate-400 uppercase">
+            <tr>
+              <th class="px-3 py-2 font-medium">Разм.</th>
+              <th class="px-3 py-2 font-medium">Вес (г)</th>
+              <th class="px-3 py-2 font-medium">Цена ₽</th>
+              <th class="px-3 py-2 font-medium text-center">Статус</th>
+            </tr>
+          </thead>
+          <tbody formArrayName="variants" class="divide-y divide-gray-100 dark:divide-slate-800">
+            <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="px-3 py-3 font-bold text-slate-900 dark:text-white">[S]</td>
+              <td class="px-3 py-3">
+                <ui-input
+                  placeholder="280"
+                  [formControl]="pizzaForm.controls.variants.controls[0].controls.weight"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3">
+                <ui-input
+                  [formControl]="pizzaForm.controls.variants.controls[0].controls.price"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3 text-center">
+                <ui-toggle
+                  [formControl]="pizzaForm.controls.variants.controls[0].controls.inStock"
+                ></ui-toggle>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="px-3 py-3 font-bold text-slate-900 dark:text-white">[M]</td>
+              <td class="px-3 py-3">
+                <ui-input
+                  placeholder="350"
+                  [formControl]="pizzaForm.controls.variants.controls[1].controls.weight"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3">
+                <ui-input
+                  [formControl]="pizzaForm.controls.variants.controls[1].controls.price"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3 text-center">
+                <ui-toggle
+                  [formControl]="pizzaForm.controls.variants.controls[1].controls.inStock"
+                ></ui-toggle>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors">
+              <td class="px-3 py-3 font-bold text-slate-900 dark:text-white">[L]</td>
+              <td class="px-3 py-3">
+                <ui-input
+                  placeholder="420"
+                  [formControl]="pizzaForm.controls.variants.controls[2].controls.weight"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3">
+                <ui-input
+                  [formControl]="pizzaForm.controls.variants.controls[2].controls.price"
+                  inputClass="w-24 px-3 py-1.5 bg-transparent border border-gray-200 dark:border-slate-700 rounded-md text-sm dark:text-white focus:border-orange-400"
+                ></ui-input>
+              </td>
+              <td class="px-3 py-3 text-center">
+                <ui-toggle
+                  [formControl]="pizzaForm.controls.variants.controls[2].controls.inStock"
+                ></ui-toggle>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm transition-colors duration-200 space-y-6">
+      <h2 class="text-lg font-semibold text-slate-950 dark:text-white">КОНСТРУКТОР СОСТАВА</h2>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+        <div class="space-y-4">
+          <h3 class="text-sm font-medium text-slate-600 dark:text-slate-400">Ингредиенты</h3>
+          
+          <div class="space-y-2" formArrayName="ingredients">
+            @if (this.ingredients(); as ingredients) {
+              @for (control of pizzaForm.controls.ingredients.controls; track control) {
+              <div>
+                <ui-checkbox
+                  [label]="[...ingredients][$index]?.name ?? ''"
+                  [formControl]="control"
+                ></ui-checkbox>
+              </div>
+              }
+            }
+          </div>
+        </div>
+        <div class="space-y-4"></div>
+      </div>
+    </section>
+  </form>
+</div>

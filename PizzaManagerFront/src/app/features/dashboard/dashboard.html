@@ -1,0 +1,64 @@
+<div class="space-y-4 md:space-y-6">
+  <!-- Top Stats -->
+  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+    <!-- Stat Card 1 -->
+    <app-card-layout 
+      title="Выручка" 
+      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+      <app-card-revenue></app-card-revenue>
+    </app-card-layout>
+
+    <!-- Stat Card 2 -->
+    <app-card-layout 
+      title="Заказы"
+      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+      <i-lucide icon [name]="ShoppingCart" class="w-4 h-4 md:w-5 md:h-5 text-slate-400 dark:text-slate-500 shrink-0"></i-lucide>
+      <app-card-orders></app-card-orders>
+    </app-card-layout>
+
+    <!-- Stat Card 3 -->
+    <app-card-layout 
+      title="Ср. Чек"
+      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+      <app-card-average-bill></app-card-average-bill>
+    </app-card-layout>
+
+    <!-- Stat Card 4 -->
+    <app-card-layout 
+      title="Ожидание"
+      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+      <i-lucide icon [name]="Clock" class="w-4 h-4 md:w-5 md:h-5 text-slate-400 dark:text-slate-500 shrink-0"></i-lucide>
+      <app-card-waiting></app-card-waiting>
+    </app-card-layout>
+  </div>
+
+  <!-- Middle Charts -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+    <app-widget-layout
+      title="Динамика продаж"
+      class="lg:col-span-2 bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      <app-widget-sales-chart></app-widget-sales-chart>
+    </app-widget-layout>
+
+    <app-widget-layout
+      title="Топ-5 пицц"
+      class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      <app-widget-top-pizzas></app-widget-top-pizzas>
+    </app-widget-layout>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+    <app-widget-layout 
+      title="Последние заказы"
+      class="lg:col-span-2 bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      <app-widget-latest-orders></app-widget-latest-orders>
+    </app-widget-layout>
+
+    <app-widget-layout
+      title="Прогноз нагрузки"
+      class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+      <app-widget-load-forecast></app-widget-load-forecast>
+    </app-widget-layout>
+  </div>
+</div>

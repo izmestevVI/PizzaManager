@@ -1,0 +1,23 @@
+<div class="overflow-x-auto -mx-4 md:mx-0 px-4 md:px-0">
+    <div class="min-w-[500px]">
+        <table class="w-full text-sm text-left">
+            <thead class="text-xs text-slate-500 bg-gray-50/50 dark:bg-slate-900/50 dark:text-slate-400 uppercase">
+                <tr>
+                    <th class="px-4 py-3 font-medium rounded-tl-lg">No</th>
+                    <th class="px-4 py-3 font-medium">Time</th>
+                    <th class="px-4 py-3 font-medium">Client</th>
+                    <th class="px-4 py-3 font-medium">Sum</th>
+                    <th class="px-4 py-3 font-medium rounded-tr-lg">Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                 @for (order of orders(); track order.id) {
+                    <tr
+                        [app-widget-latest-orders-item]="order"
+                        class="border-b border-gray-50 dark:border-slate-800/50 last:border-0 hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors">
+                    </tr>
+                 }
+            </tbody>
+        </table>
+    </div>
+</div>

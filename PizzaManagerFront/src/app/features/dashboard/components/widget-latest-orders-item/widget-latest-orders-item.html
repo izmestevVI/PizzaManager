@@ -1,0 +1,10 @@
+<td class="px-4 py-3 md:py-4 font-medium text-slate-900 dark:text-white">№{{ order().id }}</td>
+<td class="px-4 py-3 md:py-4 text-slate-600 dark:text-slate-400">{{ order().createdAt | date:'HH:mm' }}</td>
+<td class="px-4 py-3 md:py-4 text-slate-600 dark:text-slate-400">{{ order().customerName }}</td>
+<td class="px-4 py-3 md:py-4 font-medium text-slate-900 dark:text-white">{{ order().totalPrice | currency:'RUB':'symbol':'1.2-2' }}</td>
+<td class="px-4 py-3 md:py-4">
+    <span
+        class="px-2.5 py-1 text-xs font-medium rounded-md bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">
+        {{ order().status }}
+    </span>
+</td>

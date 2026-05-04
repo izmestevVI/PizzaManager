@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/cdk/overlay-prebuilt.css';
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+--color-primary: #f97316;
+  --color-primary-hover: #ea580c;
+  
+  /* Цвета для валидации */
+  --color-error: #ef4444;
+  --color-success: #22c55e;
+
+  /* Скругления согласно макету */
+  --radius-control: 0.75rem; /* 12px - xl */
+}
+
+@layer components {
+  .ui-input-base {
+    @apply w-full px-4 py-2.5 rounded-control border text-sm transition-all duration-200 outline-none;
+    @apply bg-gray-50 border-gray-200 text-slate-900;
+    @apply dark:bg-slate-900 dark:border-slate-800 dark:text-white;
+    
+    &:focus {
+      @apply ring-2 ring-primary/20 border-primary;
+    }
+    
+    &:disabled {
+      @apply opacity-50 cursor-not-allowed bg-gray-100 dark:bg-slate-950;
+    }
+    
+    &.ng-invalid.ng-touched {
+      @apply border-error ring-error/10;
+    }
+  }
+}

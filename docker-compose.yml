@@ -1,0 +1,55 @@
+services:
+  # --- БАЗА ДАННЫХ ---
+  db:
+    image: postgres:18-alpine
+    container_name: pizza_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: pizza_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    networks:
+      - pizza_network
+
+  # --- BACKEND ---
+  api:
+    build:
+      context: . # Контекст из корня, чтобы захватить и Api, и Tests
+      dockerfile: PizzaManagerApi/Dockerfile
+    container_name: pizza_api
+    restart: always
+    environment:
+      # Переопределяем строку подключения для C# приложения
+      # Имя хоста 'db' совпадает с названием сервиса базы данных
+      - ConnectionStrings__DefaultConnection=Host=db;Port=5432;Database=pizza_db;Username=postgres;Password=admin
+    ports:
+      - "8080:8080" # Доступ к API снаружи по localhost:8080
+    depends_on:
+      - db
+    networks:
+      - pizza_network
+
+  # --- FRONTEND ---
+  frontend:
+    build:
+      context: ./PizzaManagerFront
+      dockerfile: Dockerfile
+    container_name: pizza_front
+    restart: always
+    ports:
+      - "80:80" # Доступ к приложению снаружи по localhost
+    depends_on:
+      - api
+    networks:
+      - pizza_network
+
+volumes:
+  postgres_data: # Именованный volume для сохранения данных БД при перезапуске
+
+networks:
+  pizza_network:
+    driver: bridge
