@@ -36,12 +36,3 @@ bash
 dotnet test
 
 ```
-
-С генерацией отчета о покрытии:
-
-bash
-
-```
-dotnet test /p:CollectCoverage=true
-
-```
