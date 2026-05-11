@@ -10,7 +10,7 @@
     font-weight: 800; /* extabold = 800 */
 
     /* 3. Внутренняя тень: сохраняем, как на макете */
-    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 2px 4px 0 rgb(0 0 0 / 5%);
 
     /* 4. Небольшое улучшение для выделения, как на макете */
     transform: scale(1.05);

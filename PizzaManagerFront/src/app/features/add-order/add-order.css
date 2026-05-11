@@ -13,12 +13,9 @@ select option {
 }
 
 /* ПОПЫТКА СТИЛИЗАЦИИ ВЫБРАННОГО ПУНКТА */
-/* К сожалению, это НЕ БУДЕТ выглядеть так ярко, как на макете */
 
 select option[selected],
 select option:checked {
-    /* Эти цвета будут применены, но браузер наложит поверх них */
-    /* свое дефолтное выделение (синее в Chrome) */
     background-color: var(--color-primary, #f97316) !important;
-    color: var(--color-primary-contrast, #ffffff) !important;
+    color: var(--color-primary-contrast, #fff) !important;
 }
