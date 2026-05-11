@@ -1,9 +1,9 @@
 <div #container #trigger="cdkOverlayOrigin" cdkOverlayOrigin [style.width]="width()" [class]="containerClass()">
   @if (label()) {
-    <label [class]="labelClass()">{{ label() }}{{ variant() === 'inline' ? ':' : '' }}</label>
+    <label [for]="id + '-btn'" [class]="labelClass()">{{ label() }}{{ variant() === 'inline' ? ':' : '' }}</label>
   }
 
-  <button type="button" (click)="toggle()" [disabled]="isDisabled()" [class]="triggerClass()">
+  <button [id]="id + '-btn'" type="button" (click)="toggle()" [disabled]="isDisabled()" [class]="triggerClass()">
     <span class="truncate" [class.text-slate-400]="!selectedLabels()">
       {{ selectedLabels() || placeholder() }}
     </span>

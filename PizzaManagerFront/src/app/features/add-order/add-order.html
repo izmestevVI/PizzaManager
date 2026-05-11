@@ -57,7 +57,7 @@
                     <tr 
                     [app-order-item]="group" 
                     [index]="$index"
-                    (onDelete)="onPizzaDelete($index)"
+                    (deleteOrder)="onPizzaDelete($index)"
                     class="hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors"
                     ></tr>
                 }

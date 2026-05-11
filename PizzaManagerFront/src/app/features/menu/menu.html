@@ -47,7 +47,7 @@
           @for (pizza of pizzas(); track pizza.id) {
             <tr 
               [app-menu-item]="pizza"
-              (onDelete)="deletePizza(pizza.id)"
+              (deletePizza)="deletePizza(pizza.id)"
               class="hover:bg-gray-50/50 dark:hover:bg-slate-900/50 transition-colors">
           </tr>
           }

@@ -1,4 +1,4 @@
-import { Component, computed, signal, effect, ElementRef, viewChild } from '@angular/core';
+import { Component, computed, signal, ElementRef, viewChild } from '@angular/core';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LucideAngularModule, ChevronDown, Search, X, Check } from 'lucide-angular';
 import { BaseSelectControl, SelectOption } from '../base/base-select-control';
@@ -70,7 +70,7 @@ export class AutocompleteComponent<T> extends BaseSelectControl<T, T> {
   }
 
   clear(): void {
-    this.handleValueChange(null as any);
+    this.handleValueChange(null);
     this.searchQuery.set('');
     this.inputElement()?.nativeElement.focus();
   }

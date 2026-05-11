@@ -1,7 +1,6 @@
-import { Component, inject } from '@angular/core';
-import {Dialog, DialogRef, DIALOG_DATA, DialogModule} from '@angular/cdk/dialog';
+import { Component } from '@angular/core';
+import { DialogModule} from '@angular/cdk/dialog';
 import { LucideAngularModule, TrendingUp, TrendingDown, ShoppingCart, Clock} from 'lucide-angular';
-import { AddOrder } from '../add-order/add-order';
 import { WidgetLayout } from "./components/widget-layout/widget-layout";
 import { WidgetLoadForecast } from "./components/widget-load-forecast/widget-load-forecast";
 import { WidgetLatestOrders } from "./components/widget-latest-orders/widget-latest-orders";

@@ -52,13 +52,13 @@ export abstract class BaseControl<T> implements ControlValueAccessor {
   /**
    * Внутренние коллбэки для уведомления Angular об изменениях
    */
-  protected onChange: (value: T | null) => void = () => {};
-  protected onTouched: () => void = () => {};
+  protected onChange: (value: T | null) => void = () => {/* noop */};
+  protected onTouched: () => void = () => {/* noop */};
 
   /**
    * Метод для вызова при изменении значения в UI
    */
-  handleValueChange(newValue: T): void {
+  handleValueChange(newValue: T | null): void {
     if (this.isDisabled()) return;
     this.value.set(newValue);
     this.onChange(newValue);

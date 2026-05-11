@@ -7,9 +7,9 @@ import { SelectButtonOption } from './select-button.model';
   standalone: true,
   templateUrl: './select-button.html',
 })
-export class SelectButtonComponent extends BaseControl<any> {
+export class SelectButtonComponent<T> extends BaseControl<T> {
   // Список опций для отображения
-  options = input.required<SelectButtonOption[]>();
+  options = input.required<SelectButtonOption<T>[]>();
   variant = input<'default' | 'inline'>('default');
 
   containerClass = computed(() => 
@@ -33,7 +33,7 @@ export class SelectButtonComponent extends BaseControl<any> {
       : 'inline-flex p-1 bg-gray-100 dark:bg-slate-900 rounded-xl w-fit'
   );
 
-  buttonClass(optValue: any): string {
+  buttonClass(optValue: T): string {
     const isActive = this.value() === optValue;
     
     if (this.variant() === 'inline') {
@@ -53,7 +53,7 @@ export class SelectButtonComponent extends BaseControl<any> {
       : `${baseDefault} text-slate-500 hover:text-slate-700 dark:hover:text-slate-300`;
   }
 
-  select(val: any): void {
+  select(val: T): void {
     if (this.isDisabled()) return;
     this.handleValueChange(val);
   }

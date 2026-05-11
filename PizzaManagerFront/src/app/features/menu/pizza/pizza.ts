@@ -37,7 +37,7 @@ export class PizzaComponent implements OnInit {
   pizzaService = inject(PizzaFacadeService);
   dictionaryService = inject(DictionaryFacadeService);
   categorys = toSignal(this.dictionaryService.getCategories().pipe(
-    map(categories => categories.map(c => (<SelectOption<Category>>{ label: c.name, value: c })))
+    map(categories => categories.map((c): SelectOption<Category> => ({ label: c.name, value: c })))
   ));
   ingredients = signal<Ingredient[] | null>(null)
   isEdit = signal<boolean>(false)
@@ -139,7 +139,8 @@ export class PizzaComponent implements OnInit {
   }
 
   private _addVariantsToFormArray(): void {
-    (<PizzaSize[]>['S', 'M', 'L']).forEach(pizzaSize => {
+    const arrPizzaSize: PizzaSize[] = ['S', 'M', 'L']
+    arrPizzaSize.forEach(pizzaSize => {
       const wight = pizzaWeightBySize[pizzaSize]
       const pizzaVariantForm = new FormGroup<PizzaVariantForm>({
         size: new FormControl<PizzaSize | null>(pizzaSize),
@@ -167,7 +168,7 @@ export class PizzaComponent implements OnInit {
   addOrUpdatePizza(): void {
     if (this.pizzaForm.valid) {
       const { name, description, categorys, variants, ingredients } = this.pizzaForm.value;
-      const variantsPizza = variants?.map(v => (<PizzaVariant>{
+      const variantsPizza = variants?.map((v): PizzaVariant => ({
         size: v.size ?? 'S',
         weight: v.weight ?? 0,
         price: v.price ?? 0,
@@ -187,7 +188,11 @@ export class PizzaComponent implements OnInit {
           ingredientIds,
           variants: variantsPizza
         };
-        this.isEdit() ? this._updatePizza(payload) : this._addPizza(payload)
+        if (this.isEdit()) {
+          this._updatePizza(payload)
+        } else {
+          this._addPizza(payload)
+        }
       }
     }
   }

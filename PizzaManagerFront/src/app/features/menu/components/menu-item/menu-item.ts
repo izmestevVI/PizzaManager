@@ -14,7 +14,7 @@ export class MenuItem {
   readonly Trash2 = Trash2;
 
   pizza = input.required<PizzaResponce>({alias: 'app-menu-item'});
-  onDelete = output()
+  deletePizza = output()
   variantPrice = computed(() => {
     const variants = this.pizza().variants;
     const priceS = variants.find(v => v.size === 'S')?.price;

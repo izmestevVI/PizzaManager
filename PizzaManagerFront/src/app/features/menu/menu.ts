@@ -28,7 +28,7 @@ export class Menu {
     { label: 'Мясные', value: 'meat' },
     { label: 'Вегетарианские', value: 'vegetarian' }
   ];
-  filterOptoins: SelectButtonOption[] = [
+  filterOptoins: SelectButtonOption<string>[] = [
     { label: 'Все', value: 'all' },
     { label: 'В наличии', value: 'available' },
     { label: 'В стоп-листе', value: 'stoplist' }

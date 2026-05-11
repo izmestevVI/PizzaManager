@@ -7,6 +7,7 @@ import { SelectButtonComponent } from "../../../../shared/ui-kit/select-button/s
 import { PizzaOrder } from '../../add-order.model';
 import { InputComponent } from "../../../../shared/ui-kit/input/input";
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { PizzaSize } from '../../../../core/models/pizza.model';
 
 @Component({
   selector: '[app-order-item]',
@@ -19,12 +20,12 @@ export class OrderItem implements OnInit {
   private destroyRef = inject(DestroyRef);
   pizzaOrderFormGroup = input.required<FormGroup<PizzaOrder>>({ alias: 'app-order-item' });
   index = input.required<number>();
-  onDelete = output()
+  deleteOrder = output()
   price = signal<number | null>(null);
 
   sizes = computed(() => {
     const variants = this.pizzaOrderFormGroup().controls.pizza.value?.variants;
-    return variants ? variants.map(v => (<SelectButtonOption>{ label: `[${v.size}]`, value: v.size })) : [];
+    return variants ? variants.map((v): SelectButtonOption<PizzaSize> => ({ label: `[${v.size}]`, value: v.size })) : [];
   })
 
   ngOnInit(): void {

@@ -1,8 +1,7 @@
-import { Component, effect, inject, signal } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { OrderFacadeService } from '../../../../core/services/order.facade.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { WidgetLatestOrdersItem } from "../widget-latest-orders-item/widget-latest-orders-item";
-import { OrderResponse } from '../../../../core/models/order.model';
 import { map, Subject, switchMap } from 'rxjs';
 
 @Component({

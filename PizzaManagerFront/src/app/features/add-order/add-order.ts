@@ -38,11 +38,11 @@ export class AddOrder implements OnInit {
   data = inject(DIALOG_DATA);
   pizzaService = inject(PizzaFacadeService);
   pizzasSelectOption = toSignal(this.pizzaService.getPizzas().pipe(
-    map(pizzas => pizzas.map(p => (<SelectOption<PizzaResponce>>{ label: p.name, value: p })))
+    map(pizzas => pizzas.map((p): SelectOption<PizzaResponce> => ({ label: p.name, value: p })))
   ));
   dictionaryService = inject(DictionaryFacadeService);
   customersSelectOption = toSignal(this.dictionaryService.getCustomers().pipe(
-    map(customers => customers.map(customer => (<SelectOption<Customer>>{
+    map(customers => customers.map((customer): SelectOption<Customer> => ({
       label: customer.phone,
       description: customer.name,
       value: customer
@@ -56,7 +56,7 @@ export class AddOrder implements OnInit {
     { label: 'Картой', value: 'card', description: 'Онлайн на сайте' }
   ];
 
-  deliveryTypeOptions: SelectButtonOption[] = [
+  deliveryTypeOptions: SelectButtonOption<string>[] = [
     { value: 'delivery', label: 'Доставка' },
     { value: 'pickup', label: 'Самовывоз' }
   ];
@@ -152,7 +152,7 @@ export class AddOrder implements OnInit {
         this.orderService.addOrder(payload)
         .pipe(takeUntilDestroyed(this.destroyRef))
         .subscribe({
-          next: (response) => {
+          next: () => {
             this.orderService.refreshOrders();
             this.dialogRef.close();
           },

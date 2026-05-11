@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
 import { LucideAngularModule, Search, Menu, LayoutDashboard, ListOrdered, Moon, Sun } from 'lucide-angular';
 import { ThemeService } from '../../services/theme.service';

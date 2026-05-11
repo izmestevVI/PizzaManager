@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { ArrowRight, Eye, LucideAngularModule, Phone, Navigation, Currency } from 'lucide-angular';
+import { ArrowRight, Eye, LucideAngularModule, Phone, Navigation } from 'lucide-angular';
 import { OrderResponse } from '../../../../core/models/order.model';
 import { CurrencyPipe, DatePipe } from '@angular/common';
 

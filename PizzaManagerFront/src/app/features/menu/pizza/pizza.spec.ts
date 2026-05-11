@@ -1,9 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
-import { ReactiveFormsModule, FormControl } from '@angular/forms';
+import { describe, it, expect, vi } from 'vitest';
+import { TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule, FormControl, AbstractControl } from '@angular/forms';
 import { provideRouter, Router } from '@angular/router';
-import { signal, Signal } from '@angular/core';
-import { of, Subject } from 'rxjs';
+import { of } from 'rxjs';
 
 import { PizzaComponent } from './pizza';
 import { PizzaFacadeService } from '../../../core/services/pizza.facade.service';
@@ -110,7 +109,7 @@ describe('ingredientsValidator', () => {
 
 describe('variantValidator', () => {
   function buildGroup(inStock: boolean, size: string | null, weight: number | null, price: number | null) {
-    return new (class {
+    const mock = {
       get(key: string) {
         const map: Record<string, { value: unknown }> = {
           inStock: { value: inStock },
@@ -120,7 +119,8 @@ describe('variantValidator', () => {
         };
         return map[key];
       }
-    })() as any;
+    }
+    return mock as unknown as AbstractControl;
   }
 
   it('returns null when variant is not in stock (validation skipped)', () => {
@@ -296,7 +296,7 @@ describe('PizzaComponent – addOrUpdatePizza (create mode)', () => {
   });*/
 
   it('navigates to /menu after successful creation', async () => {
-    const { component, pizzaService, router } = await createComponent();
+    const { component, router } = await createComponent();
     const form = component.pizzaForm;
 
     form.controls.name.setValue('Тест');
