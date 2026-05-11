@@ -2,15 +2,15 @@ import { Component, DestroyRef, effect, inject } from '@angular/core';
 import { LucideAngularModule, Search, Plus, Pen, Trash2 } from 'lucide-angular';
 import { PizzaFacadeService } from '../../core/services/pizza.facade.service';
 import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
-import { MenuItem } from "./components/menu-item/menu-item";
+import { MenuItem } from './components/menu-item/menu-item';
 import { Subject, switchMap } from 'rxjs';
-import { SelectComponent } from "../../shared/ui-kit/select/select";
+import { SelectComponent } from '../../shared/ui-kit/select/select';
 import { SelectOption } from '../../shared/ui-kit/base/base-select-control';
-import { SelectButtonComponent } from "../../shared/ui-kit/select-button/select-button";
+import { SelectButtonComponent } from '../../shared/ui-kit/select-button/select-button';
 import { SelectButtonOption } from '../../shared/ui-kit/select-button/select-button.model';
-import { InputComponent } from "../../shared/ui-kit/input/input";
-import { RouterLink } from "@angular/router";
-import { ButtonComponent } from "../../shared/ui-kit/button/button";
+import { InputComponent } from '../../shared/ui-kit/input/input';
+import { RouterLink } from '@angular/router';
+import { ButtonComponent } from '../../shared/ui-kit/button/button';
 
 @Component({
   selector: 'app-menu',
@@ -26,20 +26,17 @@ export class Menu {
   categoryOptions: SelectOption<string>[] = [
     { label: 'Все', value: 'all' },
     { label: 'Мясные', value: 'meat' },
-    { label: 'Вегетарианские', value: 'vegetarian' }
+    { label: 'Вегетарианские', value: 'vegetarian' },
   ];
   filterOptoins: SelectButtonOption<string>[] = [
     { label: 'Все', value: 'all' },
     { label: 'В наличии', value: 'available' },
-    { label: 'В стоп-листе', value: 'stoplist' }
-  ]
+    { label: 'В стоп-листе', value: 'stoplist' },
+  ];
   private destroyRef = inject(DestroyRef);
   pizzaService = inject(PizzaFacadeService);
   isRefresh = new Subject<void>();
-  pizzas = toSignal(this.isRefresh
-    .pipe(
-      switchMap(() => this.pizzaService.getPizzas())
-    ))
+  pizzas = toSignal(this.isRefresh.pipe(switchMap(() => this.pizzaService.getPizzas())));
 
   constructor() {
     this._watchRefreshOrders();
@@ -49,14 +46,15 @@ export class Menu {
     effect(() => {
       this.pizzaService.isRefreshOrders();
       this.isRefresh.next();
-    })
+    });
   }
 
   deletePizza(id: number) {
-    this.pizzaService.deletePizza(id)
-    .pipe(takeUntilDestroyed(this.destroyRef))
-    .subscribe(() => {
-      this.pizzaService.refreshOrders();
-    });
+    this.pizzaService
+      .deletePizza(id)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.pizzaService.refreshOrders();
+      });
   }
 }

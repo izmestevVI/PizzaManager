@@ -1,21 +1,21 @@
-    <div class="w-full">
-      @if (label()) {
-        <label [for]="id()" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5">
-          {{ label() }}
-        </label>
-      }
-      
-      <textarea
-        [id]="id()"
-        [value]="value()"
-        [placeholder]="placeholder()"
-        [disabled]="isDisabled()"
-        [rows]="rows()"
-        (input)="onInput($event)"
-        (blur)="handleBlur()"
-        class="ui-input-base min-h-[100px] resize-y py-3"
-        [class.border-error]="hasError()"
-      ></textarea>
+<div class="w-full">
+  @if (label()) {
+    <label [for]="id()" class="mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300">
+      {{ label() }}
+    </label>
+  }
 
-      <ui-form-error [message]="errorMessage()"></ui-form-error>
-    </div>
+  <textarea
+    [id]="id()"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="isDisabled()"
+    [rows]="rows()"
+    (input)="onInput($event)"
+    (blur)="handleBlur()"
+    class="ui-input-base min-h-[100px] resize-y py-3"
+    [class.border-error]="hasError()"
+  ></textarea>
+
+  <ui-form-error [message]="errorMessage()"></ui-form-error>
+</div>

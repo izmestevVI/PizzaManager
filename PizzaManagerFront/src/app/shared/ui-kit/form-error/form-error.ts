@@ -5,11 +5,11 @@ import { Component, input } from '@angular/core';
   standalone: true,
   template: `
     @if (message()) {
-      <p class="mt-1.5 text-xs font-medium text-error animate-in fade-in slide-in-from-top-1">
+      <p class="text-error animate-in fade-in slide-in-from-top-1 mt-1.5 text-xs font-medium">
         {{ message() }}
       </p>
     }
-  `
+  `,
 })
 export class FormErrorComponent {
   message = input<string | null>(null);

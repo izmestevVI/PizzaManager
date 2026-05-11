@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import {describe, it, beforeEach} from 'vitest'
+import { describe, it, beforeEach } from 'vitest';
 import { App } from './app';
 
 describe('App', () => {

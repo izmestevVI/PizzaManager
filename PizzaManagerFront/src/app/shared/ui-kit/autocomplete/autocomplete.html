@@ -1,21 +1,13 @@
-<div class="w-full flex flex-col gap-1.5">
+<div class="flex w-full flex-col gap-1.5">
   @if (label()) {
     <label [for]="id()" class="text-sm font-semibold text-slate-700 dark:text-slate-300">
       {{ label() }}
     </label>
   }
 
-  <div 
-    #container 
-    #trigger="cdkOverlayOrigin" 
-    cdkOverlayOrigin 
-    class="relative group"
-  >
+  <div #container #trigger="cdkOverlayOrigin" cdkOverlayOrigin class="group relative">
     <div class="relative">
-      <i-lucide 
-        [name]="Search" 
-        class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"
-      ></i-lucide>
+      <i-lucide [name]="Search" class="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400"></i-lucide>
 
       <input
         #searchInput
@@ -26,48 +18,58 @@
         [value]="isOpen() ? '' : selectedLabel()"
         (input)="onInputChange($event)"
         (click)="toggle()"
-        class="ui-input-base pl-10 pr-10 w-full transition-all"
+        class="ui-input-base w-full pr-10 pl-10 transition-all"
         [class.border-orange-500]="isOpen()"
         [class.border-error]="hasError()"
         autocomplete="off"
-      >
+      />
 
-      <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+      <div class="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-1">
         @if (value()) {
-          <button type="button" (click)="clear()" class="p-1 hover:bg-gray-100 dark:hover:bg-slate-800 rounded-full transition-colors">
-            <i-lucide [name]="X" class="w-3.5 h-3.5 text-slate-400"></i-lucide>
+          <button type="button" (click)="clear()" class="rounded-full p-1 transition-colors hover:bg-gray-100 dark:hover:bg-slate-800">
+            <i-lucide [name]="X" class="h-3.5 w-3.5 text-slate-400"></i-lucide>
           </button>
         }
-        <i-lucide [name]="ChevronDown" class="w-4 h-4 text-slate-400 transition-transform duration-200"
-          [class.rotate-180]="isOpen()"></i-lucide>
+        <i-lucide
+          [name]="ChevronDown"
+          class="h-4 w-4 text-slate-400 transition-transform duration-200"
+          [class.rotate-180]="isOpen()"
+        ></i-lucide>
       </div>
     </div>
 
-    <ng-template 
-      cdkConnectedOverlay 
-      [cdkConnectedOverlayOrigin]="trigger" 
+    <ng-template
+      cdkConnectedOverlay
+      [cdkConnectedOverlayOrigin]="trigger"
       [cdkConnectedOverlayOpen]="isOpen()"
       [cdkConnectedOverlayPositions]="overlayPositions"
       [cdkConnectedOverlayWidth]="container.offsetWidth"
       (overlayOutsideClick)="close()"
     >
-      <div class="w-full bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-100 z-50">
-        <ul class="max-h-[240px] overflow-y-auto p-1.5 custom-scrollbar">
+      <div
+        class="animate-in fade-in zoom-in-95 z-50 w-full overflow-hidden rounded-xl border border-gray-200 bg-white shadow-2xl duration-100 dark:border-slate-800 dark:bg-slate-900"
+      >
+        <ul class="custom-scrollbar max-h-[240px] overflow-y-auto p-1.5">
           @for (opt of filteredOptions(); track opt.value) {
             <li>
-              <button type="button" (click)="selectOption(opt)"
-                class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors text-left"
-                [class]="value() === opt.value 
-                  ? 'bg-orange-50 dark:bg-orange-500/10 text-orange-600 dark:text-orange-400 font-semibold' 
-                  : 'text-slate-700 dark:text-slate-300 hover:bg-gray-100 dark:hover:bg-slate-800'">
+              <button
+                type="button"
+                (click)="selectOption(opt)"
+                class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-left text-sm transition-colors"
+                [class]="
+                  value() === opt.value
+                    ? 'bg-orange-50 font-semibold text-orange-600 dark:bg-orange-500/10 dark:text-orange-400'
+                    : 'text-slate-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800'
+                "
+              >
                 <span>{{ opt.label }}</span>
                 @if (value() === opt.value) {
-                  <i-lucide [name]="Check" class="w-4 h-4 ml-auto text-orange-500"></i-lucide>
+                  <i-lucide [name]="Check" class="ml-auto h-4 w-4 text-orange-500"></i-lucide>
                 }
               </button>
             </li>
           } @empty {
-            <li class="px-4 py-3 text-sm text-slate-500 text-center italic">Ничего не найдено</li>
+            <li class="px-4 py-3 text-center text-sm text-slate-500 italic">Ничего не найдено</li>
           }
         </ul>
       </div>

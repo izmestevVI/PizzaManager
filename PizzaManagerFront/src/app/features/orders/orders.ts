@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { LucideAngularModule, Search, Funnel, Navigation, Phone, Eye, ArrowRight, Plus } from 'lucide-angular';
 import { OrderFacadeService } from '../../core/services/order.facade.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { OrderItem } from "./components/order-item/order-item";
-import { ButtonComponent } from "../../shared/ui-kit/button/button";
-import { InputComponent } from "../../shared/ui-kit/input/input";
+import { OrderItem } from './components/order-item/order-item';
+import { ButtonComponent } from '../../shared/ui-kit/button/button';
+import { InputComponent } from '../../shared/ui-kit/input/input';
 import { Dialog } from '@angular/cdk/dialog';
 import { AddOrder } from '../add-order/add-order';
 
@@ -27,7 +27,7 @@ export class Orders {
   orders = toSignal(this.orderService.getOrders());
   dialog = inject(Dialog);
 
-    addOrder() {
-      this.dialog.open<string>(AddOrder);
-    }
+  addOrder() {
+    this.dialog.open<string>(AddOrder);
+  }
 }

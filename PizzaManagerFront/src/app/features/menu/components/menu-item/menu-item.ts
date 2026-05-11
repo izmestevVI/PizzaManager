@@ -1,7 +1,7 @@
 import { Component, computed, input, output } from '@angular/core';
 import { LucideAngularModule, Pen, Trash2 } from 'lucide-angular';
 import { PizzaResponce } from '../../../../core/models/pizza.model';
-import { RouterLink } from "@angular/router";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: '[app-menu-item]',
@@ -13,8 +13,8 @@ export class MenuItem {
   readonly Pen = Pen;
   readonly Trash2 = Trash2;
 
-  pizza = input.required<PizzaResponce>({alias: 'app-menu-item'});
-  deletePizza = output()
+  pizza = input.required<PizzaResponce>({ alias: 'app-menu-item' });
+  deletePizza = output();
   variantPrice = computed(() => {
     const variants = this.pizza().variants;
     const priceS = variants.find(v => v.size === 'S')?.price;

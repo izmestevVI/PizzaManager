@@ -9,5 +9,5 @@ import { CurrencyPipe, DatePipe } from '@angular/common';
   styleUrl: './widget-latest-orders-item.css',
 })
 export class WidgetLatestOrdersItem {
-  order = input.required<OrderResponse>({alias: 'app-widget-latest-orders-item'});
+  order = input.required<OrderResponse>({ alias: 'app-widget-latest-orders-item' });
 }

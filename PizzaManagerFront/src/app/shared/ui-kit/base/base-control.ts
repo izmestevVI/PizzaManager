@@ -2,7 +2,7 @@ import { computed, Directive, inject, input, signal } from '@angular/core';
 import { ControlValueAccessor, NgControl } from '@angular/forms';
 
 @Directive({
-  standalone: true
+  standalone: true,
 })
 export abstract class BaseControl<T> implements ControlValueAccessor {
   /**
@@ -52,8 +52,12 @@ export abstract class BaseControl<T> implements ControlValueAccessor {
   /**
    * Внутренние коллбэки для уведомления Angular об изменениях
    */
-  protected onChange: (value: T | null) => void = () => {/* noop */};
-  protected onTouched: () => void = () => {/* noop */};
+  protected onChange: (value: T | null) => void = () => {
+    /* noop */
+  };
+  protected onTouched: () => void = () => {
+    /* noop */
+  };
 
   /**
    * Метод для вызова при изменении значения в UI

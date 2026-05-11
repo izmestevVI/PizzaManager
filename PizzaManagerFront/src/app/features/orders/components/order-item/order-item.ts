@@ -15,5 +15,5 @@ export class OrderItem {
   Eye = Eye;
   Phone = Phone;
 
-  order = input.required<OrderResponse>({alias: 'app-order-item'});
+  order = input.required<OrderResponse>({ alias: 'app-order-item' });
 }

@@ -1,63 +1,71 @@
 <div class="space-y-4 md:space-y-6">
   <!-- Top Stats -->
-  <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6">
+  <div class="grid grid-cols-2 gap-3 md:gap-6 lg:grid-cols-4">
     <!-- Stat Card 1 -->
-    <app-card-layout 
-      title="Выручка" 
-      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+    <app-card-layout
+      title="Выручка"
+      class="flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm md:p-5 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-card-revenue></app-card-revenue>
     </app-card-layout>
 
     <!-- Stat Card 2 -->
-    <app-card-layout 
+    <app-card-layout
       title="Заказы"
-      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
-      <i-lucide icon [name]="ShoppingCart" class="w-4 h-4 md:w-5 md:h-5 text-slate-400 dark:text-slate-500 shrink-0"></i-lucide>
+      class="flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm md:p-5 dark:border-slate-800 dark:bg-slate-950"
+    >
+      <i-lucide icon [name]="ShoppingCart" class="h-4 w-4 shrink-0 text-slate-400 md:h-5 md:w-5 dark:text-slate-500"></i-lucide>
       <app-card-orders></app-card-orders>
     </app-card-layout>
 
     <!-- Stat Card 3 -->
-    <app-card-layout 
+    <app-card-layout
       title="Ср. Чек"
-      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
+      class="flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm md:p-5 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-card-average-bill></app-card-average-bill>
     </app-card-layout>
 
     <!-- Stat Card 4 -->
-    <app-card-layout 
+    <app-card-layout
       title="Ожидание"
-      class="bg-white dark:bg-slate-950 p-3 md:p-5 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between overflow-hidden">
-      <i-lucide icon [name]="Clock" class="w-4 h-4 md:w-5 md:h-5 text-slate-400 dark:text-slate-500 shrink-0"></i-lucide>
+      class="flex flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-white p-3 shadow-sm md:p-5 dark:border-slate-800 dark:bg-slate-950"
+    >
+      <i-lucide icon [name]="Clock" class="h-4 w-4 shrink-0 text-slate-400 md:h-5 md:w-5 dark:text-slate-500"></i-lucide>
       <app-card-waiting></app-card-waiting>
     </app-card-layout>
   </div>
 
   <!-- Middle Charts -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+  <div class="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-3">
     <app-widget-layout
       title="Динамика продаж"
-      class="lg:col-span-2 bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      class="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm md:p-6 lg:col-span-2 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-widget-sales-chart></app-widget-sales-chart>
     </app-widget-layout>
 
     <app-widget-layout
       title="Топ-5 пицц"
-      class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      class="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm md:p-6 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-widget-top-pizzas></app-widget-top-pizzas>
     </app-widget-layout>
   </div>
 
   <!-- Bottom Section -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-    <app-widget-layout 
+  <div class="grid grid-cols-1 gap-4 md:gap-6 lg:grid-cols-3">
+    <app-widget-layout
       title="Последние заказы"
-      class="lg:col-span-2 bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm">
+      class="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm md:p-6 lg:col-span-2 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-widget-latest-orders></app-widget-latest-orders>
     </app-widget-layout>
 
     <app-widget-layout
       title="Прогноз нагрузки"
-      class="bg-white dark:bg-slate-950 p-4 md:p-6 rounded-2xl border border-gray-100 dark:border-slate-800 shadow-sm flex flex-col justify-between">
+      class="flex flex-col justify-between rounded-2xl border border-gray-100 bg-white p-4 shadow-sm md:p-6 dark:border-slate-800 dark:bg-slate-950"
+    >
       <app-widget-load-forecast></app-widget-load-forecast>
     </app-widget-layout>
   </div>

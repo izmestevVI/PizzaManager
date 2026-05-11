@@ -1,27 +1,27 @@
-    <div class="w-full">
-      @if (label()) {
-        <label [for]="id()" class="block text-sm font-semibold text-slate-700 dark:text-slate-300 mb-1.5 transition-colors">
-          {{ label() }}
-        </label>
-      }
-      
-      <div class="relative group">
-        <input
-          [id]="id()"
-          [type]="type()"
-          [value]="value()"
-          [placeholder]="placeholder()"
-          [disabled]="isDisabled()"
-          (input)="onInput($event)"
-          (blur)="handleBlur()"
-          [class]="inputClass() + ' ' + (hasError() ? 'border-error' : '')"
-        />
-        
-        <!-- Слот для иконки справа (например, поиск или крестик) -->
-        <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
-           <ng-content select="[suffix]"></ng-content>
-        </div>
-      </div>
+<div class="w-full">
+  @if (label()) {
+    <label [for]="id()" class="mb-1.5 block text-sm font-semibold text-slate-700 transition-colors dark:text-slate-300">
+      {{ label() }}
+    </label>
+  }
 
-      <ui-form-error [message]="errorMessage()"></ui-form-error>
+  <div class="group relative">
+    <input
+      [id]="id()"
+      [type]="type()"
+      [value]="value()"
+      [placeholder]="placeholder()"
+      [disabled]="isDisabled()"
+      (input)="onInput($event)"
+      (blur)="handleBlur()"
+      [class]="inputClass() + ' ' + (hasError() ? 'border-error' : '')"
+    />
+
+    <!-- Слот для иконки справа (например, поиск или крестик) -->
+    <div class="absolute top-1/2 right-3 flex -translate-y-1/2 items-center gap-2">
+      <ng-content select="[suffix]"></ng-content>
     </div>
+  </div>
+
+  <ui-form-error [message]="errorMessage()"></ui-form-error>
+</div>

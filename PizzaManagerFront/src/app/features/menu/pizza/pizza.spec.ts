@@ -40,9 +40,7 @@ const mockPizza = {
 
 function buildMockDictionaryService() {
   return {
-    getCategories: vi.fn(() =>
-      of(mockCategories)
-    ),
+    getCategories: vi.fn(() => of(mockCategories)),
     getIngredients: vi.fn(() => of(mockIngredients)),
   };
 }
@@ -54,8 +52,6 @@ function buildMockPizzaService() {
     updatePizza: vi.fn(() => of({})),
   };
 }
-
-
 
 // ---------------------------------------------------------------------------
 // Validator unit tests (pure functions – no Angular TestBed needed)
@@ -118,8 +114,8 @@ describe('variantValidator', () => {
           price: { value: price },
         };
         return map[key];
-      }
-    }
+      },
+    };
     return mock as unknown as AbstractControl;
   }
 

@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { OrderFacadeService } from '../../../../core/services/order.facade.service';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { WidgetLatestOrdersItem } from "../widget-latest-orders-item/widget-latest-orders-item";
+import { WidgetLatestOrdersItem } from '../widget-latest-orders-item/widget-latest-orders-item';
 import { map, Subject, switchMap } from 'rxjs';
 
 @Component({
@@ -13,11 +13,12 @@ import { map, Subject, switchMap } from 'rxjs';
 export class WidgetLatestOrders {
   orderFacadeService = inject(OrderFacadeService);
   isRefresh = new Subject<void>();
-  orders = toSignal(this.isRefresh
-    .pipe(
+  orders = toSignal(
+    this.isRefresh.pipe(
       switchMap(() => this.orderFacadeService.getOrders()),
-      map(orders => orders.slice(0, 2))
-    ))
+      map(orders => orders.slice(0, 2)),
+    ),
+  );
 
   constructor() {
     this._watchRefreshOrders();
@@ -27,6 +28,6 @@ export class WidgetLatestOrders {
     effect(() => {
       this.orderFacadeService.isRefreshOrders();
       this.isRefresh.next();
-    })
+    });
   }
 }

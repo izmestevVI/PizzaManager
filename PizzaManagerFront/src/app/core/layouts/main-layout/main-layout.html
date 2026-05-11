@@ -1,111 +1,149 @@
 <div
-  class="flex h-screen bg-gray-50 dark:bg-slate-900 transition-colors duration-200 font-sans text-slate-800 dark:text-slate-200 pb-16 md:pb-0">
+  class="flex h-screen bg-gray-50 pb-16 font-sans text-slate-800 transition-colors duration-200 md:pb-0 dark:bg-slate-900 dark:text-slate-200"
+>
   <aside
-    class="hidden md:flex w-64 border-r border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-950 flex-col transition-colors duration-200 z-10">
+    class="z-10 hidden w-64 flex-col border-r border-gray-200 bg-white transition-colors duration-200 md:flex dark:border-slate-800 dark:bg-slate-950"
+  >
     <div class="flex items-center gap-3 p-6 pb-8">
-      <div
-        class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-500">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-          stroke-linejoin="round" class="w-5 h-5">
+      <div class="flex h-8 w-8 items-center justify-center rounded-full bg-orange-100 text-orange-500 dark:bg-orange-500/20">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="h-5 w-5"
+        >
           <path
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+          />
           <path d="M12 12L7.76 7.76c1.11-1.11 2.61-1.8 4.24-1.8 3.31 0 6 2.69 6 6 0 1.63-.69 3.13-1.8 4.24L12 12z" />
         </svg>
       </div>
-      <div class="font-bold leading-tight">
+      <div class="leading-tight font-bold">
         <div class="text-orange-500">PIZZA</div>
         <div class="text-slate-900 dark:text-white">MANAGER</div>
       </div>
     </div>
 
-    <nav class="flex-1 px-4 space-y-2">
+    <nav class="flex-1 space-y-2 px-4">
       <!-- Навигация: используем routerLink и routerLinkActive для Angular -->
-      <a routerLink="/dashboard"
+      <a
+        routerLink="/dashboard"
         routerLinkActive="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-500"
-        class="cursor-pointer flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-200">
-        <i-lucide [name]="layoutDashboard" class="w-5 h-5"></i-lucide>
+        class="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium text-slate-500 transition-colors duration-200 hover:bg-gray-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
+      >
+        <i-lucide [name]="layoutDashboard" class="h-5 w-5"></i-lucide>
         Дашборд
       </a>
-      <a routerLink="/menu" routerLinkActive="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-500"
-        class="cursor-pointer flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-200">
-        <i-lucide [name]="Menu" class="w-5 h-5"></i-lucide>
+      <a
+        routerLink="/menu"
+        routerLinkActive="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-500"
+        class="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium text-slate-500 transition-colors duration-200 hover:bg-gray-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
+      >
+        <i-lucide [name]="Menu" class="h-5 w-5"></i-lucide>
         Меню
       </a>
-      <a routerLink="/orders"
+      <a
+        routerLink="/orders"
         routerLinkActive="bg-orange-100 dark:bg-orange-500/20 text-orange-600 dark:text-orange-500"
-        class="cursor-pointer flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:bg-gray-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-slate-200">
-        <i-lucide [name]="ListOrdered" class="w-5 h-5"></i-lucide>
+        class="flex cursor-pointer items-center gap-3 rounded-lg px-4 py-2.5 text-sm font-medium text-slate-500 transition-colors duration-200 hover:bg-gray-100 hover:text-slate-900 dark:text-slate-400 dark:hover:bg-slate-800/50 dark:hover:text-slate-200"
+      >
+        <i-lucide [name]="ListOrdered" class="h-5 w-5"></i-lucide>
         Заказы
       </a>
     </nav>
   </aside>
 
   <!-- Main Content -->
-  <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+  <div class="flex min-w-0 flex-1 flex-col overflow-hidden">
     <!-- Header -->
     <header
-      class="h-16 border-b border-gray-200 dark:border-slate-800 bg-white dark:bg-slate-950 flex items-center justify-between px-4 md:px-6 transition-colors duration-200 z-10 shrink-0">
+      class="z-10 flex h-16 shrink-0 items-center justify-between border-b border-gray-200 bg-white px-4 transition-colors duration-200 md:px-6 dark:border-slate-800 dark:bg-slate-950"
+    >
       <!-- Mobile Logo -->
       <div class="flex items-center gap-3 md:hidden">
-        <div
-          class="w-8 h-8 rounded-full bg-orange-100 dark:bg-orange-500/20 flex items-center justify-center text-orange-500 shrink-0">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-            stroke-linejoin="round" class="w-5 h-5">
+        <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-orange-100 text-orange-500 dark:bg-orange-500/20">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="h-5 w-5"
+          >
             <path
-              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"
+            />
             <path d="M12 12L7.76 7.76c1.11-1.11 2.61-1.8 4.24-1.8 3.31 0 6 2.69 6 6 0 1.63-.69 3.13-1.8 4.24L12 12z" />
           </svg>
         </div>
-        <div class="font-bold leading-tight text-sm">
+        <div class="text-sm leading-tight font-bold">
           <span class="text-orange-500">PIZZA</span>
-          <span class="text-slate-900 dark:text-white ml-1">MANAGER</span>
+          <span class="ml-1 text-slate-900 dark:text-white">MANAGER</span>
         </div>
       </div>
 
       <!-- Desktop Search -->
-      <ui-input placeholder="Поиск заказа..." class="hidden md:block w-96 relative">
-        <i-lucide suffix [name]="Search" class="w-4 h-4 text-slate-400"></i-lucide>
+      <ui-input placeholder="Поиск заказа..." class="relative hidden w-96 md:block">
+        <i-lucide suffix [name]="Search" class="h-4 w-4 text-slate-400"></i-lucide>
       </ui-input>
 
-      <div class="flex items-center gap-2 md:gap-4 ml-auto">
+      <div class="ml-auto flex items-center gap-2 md:gap-4">
         <button
-          class="md:hidden p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors duration-200">
-          <i-lucide [name]="Search" class="w-5 h-5"></i-lucide>
+          class="rounded-full p-2 text-slate-500 transition-colors duration-200 hover:bg-gray-100 md:hidden dark:text-slate-400 dark:hover:bg-slate-800"
+        >
+          <i-lucide [name]="Search" class="h-5 w-5"></i-lucide>
         </button>
-        <button (click)="toggleTheme()"
-          class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-800 text-slate-500 dark:text-slate-400 transition-colors duration-200">
-          <i-lucide [name]="Moon" class="w-5 h-5"></i-lucide>
+        <button
+          (click)="toggleTheme()"
+          class="rounded-full p-2 text-slate-500 transition-colors duration-200 hover:bg-gray-100 dark:text-slate-400 dark:hover:bg-slate-800"
+        >
+          <i-lucide [name]="Moon" class="h-5 w-5"></i-lucide>
         </button>
 
         <div
-          class="w-8 h-8 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center text-sm font-bold text-blue-600 dark:text-blue-300 shrink-0">
+          class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-sm font-bold text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+        >
           AM
         </div>
       </div>
     </header>
 
     <!-- Page Content -->
-    <main class="flex-1 overflow-auto p-4 md:p-6 pb-6 md:pb-6" cdkScrollable>
+    <main class="flex-1 overflow-auto p-4 pb-6 md:p-6 md:pb-6" cdkScrollable>
       <router-outlet></router-outlet>
     </main>
   </div>
 
   <!-- Mobile Bottom Navigation -->
   <nav
-    class="md:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-slate-950 border-t border-gray-200 dark:border-slate-800 flex justify-around items-center h-16 z-50 px-2 pb-safe">
-    <a routerLink="/" routerLinkActive="text-orange-600 dark:text-orange-500"
-      class="cursor-pointer flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">
-      <i-lucide [name]="layoutDashboard" class="w-6 h-6"></i-lucide>
+    class="pb-safe fixed right-0 bottom-0 left-0 z-50 flex h-16 items-center justify-around border-t border-gray-200 bg-white px-2 md:hidden dark:border-slate-800 dark:bg-slate-950"
+  >
+    <a
+      routerLink="/"
+      routerLinkActive="text-orange-600 dark:text-orange-500"
+      class="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-1 text-slate-500 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+    >
+      <i-lucide [name]="layoutDashboard" class="h-6 w-6"></i-lucide>
       <span class="text-[10px] font-medium">Дашборд</span>
     </a>
-    <a routerLink="/menu" routerLinkActive="text-orange-600 dark:text-orange-500"
-      class="cursor-pointer flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">
-      <i-lucide [name]="Menu" class="w-6 h-6"></i-lucide>
+    <a
+      routerLink="/menu"
+      routerLinkActive="text-orange-600 dark:text-orange-500"
+      class="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-1 text-slate-500 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+    >
+      <i-lucide [name]="Menu" class="h-6 w-6"></i-lucide>
       <span class="text-[10px] font-medium">Меню</span>
     </a>
-    <a routerLink="/orders" routerLinkActive="text-orange-600 dark:text-orange-500"
-      class="cursor-pointer flex flex-col items-center justify-center w-full h-full space-y-1 transition-colors duration-200 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">
-      <i-lucide [name]="ListOrdered" class="w-6 h-6"></i-lucide>
+    <a
+      routerLink="/orders"
+      routerLinkActive="text-orange-600 dark:text-orange-500"
+      class="flex h-full w-full cursor-pointer flex-col items-center justify-center space-y-1 text-slate-500 transition-colors duration-200 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+    >
+      <i-lucide [name]="ListOrdered" class="h-6 w-6"></i-lucide>
       <span class="text-[10px] font-medium">Заказы</span>
     </a>
   </nav>

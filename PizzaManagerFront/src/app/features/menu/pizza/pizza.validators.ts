@@ -1,4 +1,4 @@
-import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
+import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
 export function categorysValidator(min = 1): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -14,7 +14,7 @@ export function ingredientsValidator(min = 1): ValidatorFn {
       const selectedCount = value.filter(v => v === true).length;
       return selectedCount >= min ? null : { minSelected: true };
     }
-    return { minSelected: true }
+    return { minSelected: true };
   };
 }
 

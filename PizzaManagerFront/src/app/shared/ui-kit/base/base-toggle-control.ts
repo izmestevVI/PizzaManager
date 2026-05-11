@@ -3,7 +3,6 @@ import { BaseControl } from './base-control';
 
 @Directive()
 export abstract class BaseToggleControl extends BaseControl<boolean> {
-  
   // Переопределяем метод для работы с boolean
   toggle(): void {
     if (this.isDisabled()) return;

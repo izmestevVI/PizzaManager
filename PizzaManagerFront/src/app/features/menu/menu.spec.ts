@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import {describe, it, beforeEach} from 'vitest'
+import { describe, it, beforeEach } from 'vitest';
 
 import { Menu } from './menu';
 

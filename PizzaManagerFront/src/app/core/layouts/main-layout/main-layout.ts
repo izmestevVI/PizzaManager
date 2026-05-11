@@ -3,7 +3,7 @@ import { RouterOutlet, RouterLink } from '@angular/router';
 import { LucideAngularModule, Search, Menu, LayoutDashboard, ListOrdered, Moon, Sun } from 'lucide-angular';
 import { ThemeService } from '../../services/theme.service';
 import { ScrollingModule } from '@angular/cdk/scrolling';
-import { InputComponent } from "../../../shared/ui-kit/input/input";
+import { InputComponent } from '../../../shared/ui-kit/input/input';
 
 @Component({
   selector: 'app-main-layout',

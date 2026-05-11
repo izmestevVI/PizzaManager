@@ -1,7 +1,7 @@
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, inject } from '@angular/core';
 import { AddOrder } from '../../../add-order/add-order';
-import { ButtonComponent } from "../../../../shared/ui-kit/button/button";
+import { ButtonComponent } from '../../../../shared/ui-kit/button/button';
 
 @Component({
   selector: 'app-widget-load-forecast',
@@ -10,7 +10,7 @@ import { ButtonComponent } from "../../../../shared/ui-kit/button/button";
   styleUrl: './widget-load-forecast.css',
 })
 export class WidgetLoadForecast {
-    dialog = inject(Dialog);
+  dialog = inject(Dialog);
 
   addOrder() {
     this.dialog.open<string>(AddOrder);

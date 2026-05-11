@@ -2,7 +2,7 @@ import { Component, computed, signal, ElementRef, viewChild } from '@angular/cor
 import { OverlayModule } from '@angular/cdk/overlay';
 import { LucideAngularModule, ChevronDown, Search, X, Check } from 'lucide-angular';
 import { BaseSelectControl, SelectOption } from '../base/base-select-control';
-import { FormErrorComponent } from "../form-error/form-error";
+import { FormErrorComponent } from '../form-error/form-error';
 import { FormsModule } from '@angular/forms';
 import { Subject, debounceTime, distinctUntilChanged } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -19,19 +19,15 @@ export class AutocompleteComponent<T> extends BaseSelectControl<T, T> {
   X = X;
   Check = Check;
   private queryChange$ = new Subject<string>();
-  
+
   searchQuery = signal('');
-  
+
   inputElement = viewChild<ElementRef<HTMLInputElement>>('searchInput');
 
   constructor() {
     super();
-    
-    this.queryChange$.pipe(
-      debounceTime(300),
-      distinctUntilChanged(),
-      takeUntilDestroyed()
-    ).subscribe(query => {
+
+    this.queryChange$.pipe(debounceTime(300), distinctUntilChanged(), takeUntilDestroyed()).subscribe(query => {
       this.searchQuery.set(query);
     });
   }
@@ -39,9 +35,7 @@ export class AutocompleteComponent<T> extends BaseSelectControl<T, T> {
   filteredOptions = computed(() => {
     const query = this.searchQuery().toLowerCase().trim();
     if (!query) return this.options();
-    return this.options().filter(opt => 
-      opt.label.toLowerCase().includes(query)
-    );
+    return this.options().filter(opt => opt.label.toLowerCase().includes(query));
   });
 
   selectedLabel = computed(() => {
@@ -57,7 +51,7 @@ export class AutocompleteComponent<T> extends BaseSelectControl<T, T> {
 
   selectOption(option: SelectOption<T>): void {
     this.handleValueChange(option.value);
-    this.searchQuery.set(''); 
+    this.searchQuery.set('');
     this.close();
   }
 
@@ -75,7 +69,5 @@ export class AutocompleteComponent<T> extends BaseSelectControl<T, T> {
     this.inputElement()?.nativeElement.focus();
   }
 
-  containerClass = computed(() => 
-    'w-full flex flex-col'
-  );
+  containerClass = computed(() => 'w-full flex flex-col');
 }

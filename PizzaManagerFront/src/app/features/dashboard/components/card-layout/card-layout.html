@@ -1,7 +1,7 @@
-<div class="flex justify-between items-start mb-2 md:mb-4">
-    <h3 class="text-slate-500 dark:text-slate-400 font-medium text-[11px] md:text-sm truncate mr-1">{{ title() }}</h3>
-    <ng-content select="[icon]"></ng-content>
+<div class="mb-2 flex items-start justify-between md:mb-4">
+  <h3 class="mr-1 truncate text-[11px] font-medium text-slate-500 md:text-sm dark:text-slate-400">{{ title() }}</h3>
+  <ng-content select="[icon]"></ng-content>
 </div>
 <div>
-    <ng-content></ng-content>
+  <ng-content></ng-content>
 </div>

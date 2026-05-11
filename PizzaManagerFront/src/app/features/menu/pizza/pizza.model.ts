@@ -1,6 +1,6 @@
-import { FormArray, FormControl, FormGroup } from "@angular/forms";
-import { PizzaSize } from "../../../core/models/pizza.model";
-import { Category } from "../../../core/models/dictionaly.model";
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import { PizzaSize } from '../../../core/models/pizza.model';
+import { Category } from '../../../core/models/dictionaly.model';
 
 export interface PizzaVariantForm {
   size: FormControl<PizzaSize | null>;
@@ -17,7 +17,7 @@ export interface PizzaForm {
 }
 
 export const pizzaWeightBySize: Record<PizzaSize, number> = {
-    'S': 280,
-    'M': 350,
-    'L': 420
-}
+  S: 280,
+  M: 350,
+  L: 420,
+};
