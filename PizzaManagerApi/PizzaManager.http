@@ -1,4 +1,4 @@
-@Host = http://localhost:5154
+@Host = http://localhost:8080
 @PizzaId = 1
 
 ### Получить все пиццы
